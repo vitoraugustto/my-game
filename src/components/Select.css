@@ -1,0 +1,10 @@
+.select {
+  display: block;
+  padding: 10px 2px;
+  color: white;
+  background-color: #202020;
+  font-size: 20px;
+  text-align: center;
+  border: none;
+  outline: none;
+}

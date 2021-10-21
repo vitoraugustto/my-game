@@ -1,0 +1,15 @@
+.damage-span {
+  display: block;
+  text-align: cen;
+  background-color: #202020;
+  padding-bottom: 3px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.damage-span > span {
+  font-size: 26px;
+  color: lightgreen;
+}
