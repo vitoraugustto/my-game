@@ -1,4 +1,5 @@
-.damage-span {
+.damage-span,
+.damage-span-crit {
   display: block;
   text-align: cen;
   background-color: #202020;
@@ -12,4 +13,9 @@
 .damage-span > span {
   font-size: 26px;
   color: lightgreen;
+}
+
+.damage-span-crit > span {
+  font-size: 26px;
+  color: red;
 }

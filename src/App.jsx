@@ -11,7 +11,8 @@ import { roles } from "./characters/roles";
 function App() {
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedEnemy, setSelectedEnemy] = useState("");
-  const [spanDamage, setSpanDamage] = useState(undefined);
+  const [spanDamage, setSpanDamage] = useState(false);
+  const [critical, setCritical] = useState(false);
 
   function handleRoleChange(e) {
     setSelectedRole(e.target.value);
@@ -76,16 +77,21 @@ function App() {
     const criticalHitChance = parseInt(Math.random() * 100 + 1); // random between 1 and 100
 
     const baseCriticalHitChance = 1; // wont be a static value after
-    const weaponCriticalHitChance = 49; // wont be a static value after
-    const criticalDamage = 3;
+    const weaponCriticalHitChance = 29; // wont be a static value after
+    const criticalDamage = 3; // wont be a static value after
 
     const multiplier = baseCriticalHitChance + weaponCriticalHitChance;
-    persistEnemies();
 
     const rawFinalDamage =
       criticalHitChance <= multiplier
         ? intervalDamage * criticalDamage
         : intervalDamage;
+
+    if (criticalHitChance <= multiplier) {
+      setCritical(true);
+    } else {
+      setCritical(false);
+    }
 
     console.log("Dano final sem defesa: ", rawFinalDamage);
 
@@ -97,6 +103,8 @@ function App() {
 
     setEnemyHitPoints((baseEnemyStatus.baseHitPoints -= finalDamage));
     setSpanDamage(finalDamage);
+
+    persistEnemies();
   }
 
   return (
@@ -109,7 +117,9 @@ function App() {
           handleRoleChange={handleRoleChange}
         />
 
-        <Button attack={attack}>Atacar</Button>
+        <Button margin={"10px 0"} attack={attack}>
+          Atacar
+        </Button>
 
         <Profile
           isEnemy={true}
@@ -118,12 +128,10 @@ function App() {
           handleEnemyChange={handleEnemyChange}
         />
 
-        {spanDamage === undefined ? (
+        {spanDamage === false ? (
           ""
         ) : (
-          <DamageSpan>
-            Você desferiu <span>{spanDamage}</span> de dano ao inimigo!
-          </DamageSpan>
+          <DamageSpan spanDamage={spanDamage} critical={critical} />
         )}
       </div>
     </Background>

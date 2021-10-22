@@ -21,6 +21,3 @@ export const Select = ({
     </>
   );
 };
-
-// sessionStorage.setItem("selectedRole", selectedRole);
-// sessionStorage.setItem("selectedEnemy", selectedEnemy);
