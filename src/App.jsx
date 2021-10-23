@@ -25,33 +25,32 @@ function App() {
   let baseRoleStatus;
   let baseEnemyStatus;
 
-  switch (selectedRole) {
-    case "warrior":
-      baseRoleStatus = roles.warrior.baseStatus;
-      break;
-    case "mage":
-      baseRoleStatus = roles.mage.baseStatus;
-      break;
-    case "archer":
-      baseRoleStatus = roles.archer.baseStatus;
-      break;
-    default:
-      baseRoleStatus = "";
+  function loopThroughEnemies() {
+    let allEnemies = [];
+
+    for (let enemy in enemies) {
+      allEnemies.push(enemy);
+    }
+
+    allEnemies.includes(selectedEnemy) === true
+      ? (baseEnemyStatus = enemies[selectedEnemy].baseStatus)
+      : (baseEnemyStatus = "");
   }
 
-  switch (selectedEnemy) {
-    case "goblin":
-      baseEnemyStatus = enemies.goblin.baseStatus;
-      break;
-    case "orc":
-      baseEnemyStatus = enemies.orc.baseStatus;
-      break;
-    case "slime":
-      baseEnemyStatus = enemies.slime.baseStatus;
-      break;
-    default:
-      baseEnemyStatus = "";
+  function loopThroughRoles() {
+    let allRoles = [];
+
+    for (let role in roles) {
+      allRoles.push(role);
+    }
+
+    allRoles.includes(selectedRole) === true
+      ? (baseRoleStatus = roles[selectedRole].baseStatus)
+      : (baseRoleStatus = "");
   }
+
+  loopThroughEnemies();
+  loopThroughRoles();
 
   const [enemyHitPoints, setEnemyHitPoints] = useState(
     baseEnemyStatus.baseHitPoints
@@ -62,9 +61,10 @@ function App() {
   }
 
   function persistEnemies() {
-    sessionStorage.setItem("goblin", JSON.stringify(enemies.goblin.baseStatus));
-    sessionStorage.setItem("orc", JSON.stringify(enemies.orc.baseStatus));
-    sessionStorage.setItem("slime", JSON.stringify(enemies.slime.baseStatus));
+    sessionStorage.setItem(
+      selectedEnemy,
+      JSON.stringify(enemies[selectedEnemy].baseStatus)
+    );
   }
 
   function attack() {
