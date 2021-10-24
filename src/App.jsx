@@ -7,6 +7,7 @@ import { Button } from "./components/Button";
 import { DamageSpan } from "./components/DamageSpan";
 import { enemies } from "./characters/enemies";
 import { roles } from "./characters/roles";
+import { PlayerCoins } from "./components/PlayerCoins";
 
 function App() {
   const [selectedRole, setSelectedRole] = useState("");
@@ -101,7 +102,7 @@ function App() {
 
     if (finalDamage <= 0) finalDamage = 0;
 
-    setEnemyHitPoints((baseEnemyStatus.baseHitPoints -= finalDamage));
+    baseEnemyStatus.baseHitPoints -= finalDamage;
     setSpanDamage(finalDamage);
 
     persistEnemies();
@@ -110,6 +111,7 @@ function App() {
   return (
     <Background>
       <div style={{ margin: "0 auto", maxWidth: "400px" }}>
+        <PlayerCoins marginBottom={"10px"} />
         <Profile
           isEnemy={false}
           selectedRole={selectedRole}
