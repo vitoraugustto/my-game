@@ -1,8 +1,9 @@
-import { AVATAR_ROLES_PATH } from "../utils/constants";
-
+import warriorAvatar from "../assets/images/roles/warrior.png";
+import mageAvatar from "../assets/images/roles/mage.png";
+import archerAvatar from "../assets/images/roles/archer.png";
 export const roles = {
   warrior: {
-    avatar: AVATAR_ROLES_PATH + "warrior.png",
+    avatar: warriorAvatar,
     baseStatus: {
       baseHitPoints: 25,
       baseManaPoints: 0,
@@ -11,7 +12,7 @@ export const roles = {
     },
   },
   mage: {
-    avatar: AVATAR_ROLES_PATH + "mage.png",
+    avatar: mageAvatar,
     baseStatus: {
       baseHitPoints: 10,
       baseManaPoints: 20,
@@ -20,7 +21,7 @@ export const roles = {
     },
   },
   archer: {
-    avatar: AVATAR_ROLES_PATH + "archer.png",
+    avatar: archerAvatar,
     baseStatus: {
       baseHitPoints: 20,
       baseManaPoints: 0,

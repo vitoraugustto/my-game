@@ -1,8 +1,10 @@
-import { AVATAR_ENEMIES_PATH } from "../utils/constants";
+import goblinAvatar from "../assets/images/enemies/goblin.png";
+import orcAvatar from "../assets/images/enemies/orc.png";
+import slimeAvatar from "../assets/images/enemies/slime.png";
 
 export const enemies = {
   goblin: {
-    avatar: AVATAR_ENEMIES_PATH + "goblin.png",
+    avatar: goblinAvatar,
     baseStatus: {
       baseHitPoints: 6,
       baseManaPoints: 0,
@@ -11,7 +13,7 @@ export const enemies = {
     },
   },
   orc: {
-    avatar: AVATAR_ENEMIES_PATH + "orc.png",
+    avatar: orcAvatar,
     baseStatus: {
       baseHitPoints: 20,
       baseManaPoints: 0,
@@ -20,7 +22,7 @@ export const enemies = {
     },
   },
   slime: {
-    avatar: AVATAR_ENEMIES_PATH + "slime.png",
+    avatar: slimeAvatar,
     baseStatus: {
       baseHitPoints: 200,
       baseManaPoints: 0,

@@ -1,7 +1,11 @@
+import React from "react";
+
 import { Status } from "./Status";
 import { Select } from "./Select";
 
 import "./Profile.css";
+import { enemies } from "../characters/enemies";
+import { roles } from "../characters/roles";
 
 export const Profile = ({
   selectedRole,
@@ -13,6 +17,16 @@ export const Profile = ({
   ...props
 }) => {
   let isEnemy = props.isEnemy;
+  let allEnemies = [];
+  let allRoles = [];
+
+  for (let enemy in enemies) {
+    allEnemies.push(enemy);
+  }
+
+  for (let role in roles) {
+    allRoles.push(role);
+  }
 
   function VerifyEnemy() {
     if (isEnemy === true) {
@@ -27,9 +41,11 @@ export const Profile = ({
             <option disabled value="">
               Selecione um monstro
             </option>
-            <option value="goblin">Goblin</option>
-            <option value="orc">Orc</option>
-            <option value="slime">Slime</option>
+            {allEnemies.map((enemy) => (
+              <option value={enemy}>
+                {enemy[0].toUpperCase() + enemy.substring(1)}
+              </option>
+            ))}
           </Select>
           <Status
             isEnemy={isEnemy}
@@ -50,9 +66,11 @@ export const Profile = ({
             <option disabled value="">
               Selecione uma classe
             </option>
-            <option value="warrior">Guerreiro</option>
-            <option value="mage">Mago</option>
-            <option value="archer">Arqueiro</option>
+            {allRoles.map((role) => (
+              <option value={role}>
+                {role[0].toUpperCase() + role.substring(1)}
+              </option>
+            ))}
           </Select>
           <Status
             isEnemy={isEnemy}

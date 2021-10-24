@@ -29,7 +29,11 @@ export const Status = ({
             )}
           </div>
 
-          {selectedEnemy === "" ? "" : <Avatar selectedEnemy={selectedEnemy} />}
+          {selectedEnemy === "" ? (
+            ""
+          ) : (
+            <Avatar isEnemy={isEnemy} selectedEnemy={selectedEnemy} />
+          )}
         </div>
       );
     } else {
@@ -43,7 +47,11 @@ export const Status = ({
             <span>Defesa: {baseRoleStatus.baseDefense}</span>
           </div>
 
-          {selectedRole === "" ? "" : <Avatar selectedRole={selectedRole} />}
+          {selectedRole === "" ? (
+            ""
+          ) : (
+            <Avatar isEnemy={isEnemy} selectedRole={selectedRole} />
+          )}
         </div>
       );
     }
