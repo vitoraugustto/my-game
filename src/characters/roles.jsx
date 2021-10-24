@@ -1,6 +1,7 @@
 import warriorAvatar from "../assets/images/roles/warrior.png";
 import mageAvatar from "../assets/images/roles/mage.png";
 import archerAvatar from "../assets/images/roles/archer.png";
+
 export const roles = {
   warrior: {
     avatar: warriorAvatar,
@@ -30,3 +31,11 @@ export const roles = {
     },
   },
 };
+
+let allRoles = [];
+
+for (let role in roles) {
+  allRoles.push(role);
+}
+
+export default allRoles;

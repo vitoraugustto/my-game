@@ -1,14 +1,14 @@
-import "./Status.css";
-
 import { Avatar } from "./Avatar";
 
-export const Status = ({
-  selectedRole,
-  selectedEnemy,
-  baseRoleStatus,
-  baseEnemyStatus,
-  ...props
-}) => {
+import { useSelectedCharacter } from "../contexts/SelectedCharacter";
+import { useBaseStatus } from "../contexts/BaseStatus";
+
+import "./Status.css";
+
+export const Status = (props) => {
+  const { selectedRole, selectedEnemy } = useSelectedCharacter();
+  const { baseEnemyStatus, baseRoleStatus } = useBaseStatus();
+
   let isEnemy = props.isEnemy;
 
   function Status() {

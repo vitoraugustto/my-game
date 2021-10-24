@@ -1,82 +1,48 @@
-import React from "react";
+import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 
 import { Status } from "./Status";
 import { Select } from "./Select";
+import allEnemies from "../characters/enemies";
+import allRoles from "../characters/roles";
 
 import "./Profile.css";
-import { enemies } from "../characters/enemies";
-import { roles } from "../characters/roles";
 
-export const Profile = ({
-  selectedRole,
-  baseRoleStatus,
-  handleRoleChange,
-  selectedEnemy,
-  baseEnemyStatus,
-  handleEnemyChange,
-  ...props
-}) => {
+export const Profile = (props) => {
+  const { selectedRole, selectedEnemy } = useSelectedCharacter();
+
   let isEnemy = props.isEnemy;
-  let allEnemies = [];
-  let allRoles = [];
-
-  for (let enemy in enemies) {
-    allEnemies.push(enemy);
-  }
-
-  for (let role in roles) {
-    allRoles.push(role);
-  }
 
   function VerifyEnemy() {
     if (isEnemy === true) {
       return (
         <div className="role-profile">
-          <Select
-            isEnemy={isEnemy}
-            width={"100%"}
-            defaultValue={selectedEnemy}
-            handleEnemyChange={handleEnemyChange}
-          >
+          <Select isEnemy={isEnemy} width={"100%"} defaultValue={selectedEnemy}>
             <option disabled value="">
               Selecione um monstro
             </option>
             {allEnemies.map((enemy) => (
-              <option value={enemy}>
+              <option key={enemy} value={enemy}>
                 {enemy[0].toUpperCase() + enemy.substring(1)}
               </option>
             ))}
           </Select>
-          <Status
-            isEnemy={isEnemy}
-            selectedEnemy={selectedEnemy}
-            baseEnemyStatus={baseEnemyStatus}
-          />
+          <Status isEnemy={isEnemy} />
         </div>
       );
     } else {
       return (
         <div className="role-profile">
-          <Select
-            isEnemy={isEnemy}
-            width={"100%"}
-            defaultValue={selectedRole}
-            handleRoleChange={handleRoleChange}
-          >
+          <Select isEnemy={isEnemy} width={"100%"} defaultValue={selectedRole}>
             <option disabled value="">
               Selecione uma classe
             </option>
             {allRoles.map((role) => (
-              <option value={role}>
+              <option key={role} value={role}>
                 {role[0].toUpperCase() + role.substring(1)}
               </option>
             ))}
           </Select>
-          <Status
-            isEnemy={isEnemy}
-            selectedRole={selectedRole}
-            baseRoleStatus={baseRoleStatus}
-          />
+          <Status isEnemy={isEnemy} />
         </div>
       );
     }

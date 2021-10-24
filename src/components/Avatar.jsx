@@ -1,9 +1,12 @@
-import "./Avatar.css";
-
 import { roles } from "../characters/roles";
 import { enemies } from "../characters/enemies";
 
-export const Avatar = ({ selectedRole, selectedEnemy, ...props }) => {
+import { useSelectedCharacter } from "../contexts/SelectedCharacter";
+
+import "./Avatar.css";
+
+export const Avatar = (props) => {
+  const { selectedRole, selectedEnemy } = useSelectedCharacter();
   let avatarSrc;
   let avatarAlt;
 

@@ -31,3 +31,11 @@ export const enemies = {
     },
   },
 };
+
+let allEnemies = [];
+
+for (let enemy in enemies) {
+  allEnemies.push(enemy);
+}
+
+export default allEnemies;

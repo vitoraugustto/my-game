@@ -1,142 +1,92 @@
 import { useState } from "react";
 
+import { PlayerCoins } from "./components/PlayerCoins";
 import { Background } from "./components/Background";
+import { DamageSpan } from "./components/DamageSpan";
 import { Profile } from "./components/Profile";
 import { Button } from "./components/Button";
 
-import { DamageSpan } from "./components/DamageSpan";
-import { enemies } from "./characters/enemies";
-import { roles } from "./characters/roles";
-import { PlayerCoins } from "./components/PlayerCoins";
+import SelectedCharacterProvider from "./contexts/SelectedCharacter";
+import BaseStatusProvider from "./contexts/BaseStatus";
 
 function App() {
-  const [selectedRole, setSelectedRole] = useState("");
-  const [selectedEnemy, setSelectedEnemy] = useState("");
   const [spanDamage, setSpanDamage] = useState(false);
   const [critical, setCritical] = useState(false);
 
-  function handleRoleChange(e) {
-    setSelectedRole(e.target.value);
-  }
+  // function getIntervalDamage(min, max) {
+  //   return Math.floor(Math.random() * (max - min + 1) + min);
+  // }
 
-  function handleEnemyChange(e) {
-    setSelectedEnemy(e.target.value);
-  }
+  // function persistEnemies() {
+  //   sessionStorage.setItem(
+  //     selectedEnemy,
+  //     JSON.stringify(enemies[selectedEnemy].baseStatus)
+  //   );
+  // }
 
-  let baseRoleStatus;
-  let baseEnemyStatus;
+  // function attack() {
+  //   const rawDamage = baseRoleStatus.baseAttack;
 
-  function loopThroughEnemies() {
-    let allEnemies = [];
+  //   const minHitDamage = Math.round(rawDamage * 0.8);
+  //   const maxHitDamage = Math.round(rawDamage * 1.2);
+  //   const intervalDamage = getIntervalDamage(minHitDamage, maxHitDamage);
 
-    for (let enemy in enemies) {
-      allEnemies.push(enemy);
-    }
+  //   const criticalHitChance = parseInt(Math.random() * 100 + 1); // random between 1 and 100
 
-    allEnemies.includes(selectedEnemy) === true
-      ? (baseEnemyStatus = enemies[selectedEnemy].baseStatus)
-      : (baseEnemyStatus = "");
-  }
+  //   const baseCriticalHitChance = 1; // wont be a static value after
+  //   const weaponCriticalHitChance = 29; // wont be a static value after
+  //   const criticalDamage = 3; // wont be a static value after
 
-  function loopThroughRoles() {
-    let allRoles = [];
+  //   const multiplier = baseCriticalHitChance + weaponCriticalHitChance;
 
-    for (let role in roles) {
-      allRoles.push(role);
-    }
+  //   const rawFinalDamage =
+  //     criticalHitChance <= multiplier
+  //       ? intervalDamage * criticalDamage
+  //       : intervalDamage;
 
-    allRoles.includes(selectedRole) === true
-      ? (baseRoleStatus = roles[selectedRole].baseStatus)
-      : (baseRoleStatus = "");
-  }
+  //   if (criticalHitChance <= multiplier) {
+  //     setCritical(true);
+  //   } else {
+  //     setCritical(false);
+  //   }
 
-  loopThroughEnemies();
-  loopThroughRoles();
+  //   console.log("Dano final sem defesa: ", rawFinalDamage);
 
-  const [enemyHitPoints, setEnemyHitPoints] = useState(
-    baseEnemyStatus.baseHitPoints
-  );
+  //   let finalDamage = rawFinalDamage - baseEnemyStatus.baseDefense;
 
-  function getIntervalDamage(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
+  //   console.log("Dano final com defesa: ", finalDamage);
 
-  function persistEnemies() {
-    sessionStorage.setItem(
-      selectedEnemy,
-      JSON.stringify(enemies[selectedEnemy].baseStatus)
-    );
-  }
+  //   if (finalDamage <= 0) finalDamage = 0;
 
-  function attack() {
-    const rawDamage = baseRoleStatus.baseAttack;
+  //   baseEnemyStatus.baseHitPoints -= finalDamage;
+  //   setSpanDamage(finalDamage);
 
-    const minHitDamage = Math.round(rawDamage * 0.8);
-    const maxHitDamage = Math.round(rawDamage * 1.2);
-    const intervalDamage = getIntervalDamage(minHitDamage, maxHitDamage);
-
-    const criticalHitChance = parseInt(Math.random() * 100 + 1); // random between 1 and 100
-
-    const baseCriticalHitChance = 1; // wont be a static value after
-    const weaponCriticalHitChance = 29; // wont be a static value after
-    const criticalDamage = 3; // wont be a static value after
-
-    const multiplier = baseCriticalHitChance + weaponCriticalHitChance;
-
-    const rawFinalDamage =
-      criticalHitChance <= multiplier
-        ? intervalDamage * criticalDamage
-        : intervalDamage;
-
-    if (criticalHitChance <= multiplier) {
-      setCritical(true);
-    } else {
-      setCritical(false);
-    }
-
-    console.log("Dano final sem defesa: ", rawFinalDamage);
-
-    let finalDamage = rawFinalDamage - baseEnemyStatus.baseDefense;
-
-    console.log("Dano final com defesa: ", finalDamage);
-
-    if (finalDamage <= 0) finalDamage = 0;
-
-    baseEnemyStatus.baseHitPoints -= finalDamage;
-    setSpanDamage(finalDamage);
-
-    persistEnemies();
-  }
+  //   persistEnemies();
+  // }
 
   return (
-    <Background>
-      <div style={{ margin: "0 auto", maxWidth: "400px" }}>
-        <PlayerCoins marginBottom={"10px"} />
-        <Profile
-          isEnemy={false}
-          selectedRole={selectedRole}
-          baseRoleStatus={baseRoleStatus}
-          handleRoleChange={handleRoleChange}
-        />
+    <SelectedCharacterProvider>
+      <BaseStatusProvider>
+        <Background>
+          <div style={{ margin: "0 auto", maxWidth: "400px" }}>
+            <PlayerCoins marginBottom={"10px"} />
+            <Profile isEnemy={false} />
 
-        <Button margin={"10px 0"} attack={attack}>
-          Atacar
-        </Button>
+            {/* <Button margin={"10px 0"} attack={attack}>
+            Atacar
+          </Button> */}
 
-        <Profile
-          isEnemy={true}
-          selectedEnemy={selectedEnemy}
-          baseEnemyStatus={baseEnemyStatus}
-          handleEnemyChange={handleEnemyChange}
-        />
+            <Profile isEnemy={true} />
 
-        {spanDamage === false ? (
-          ""
-        ) : (
-          <DamageSpan spanDamage={spanDamage} critical={critical} />
-        )}
-      </div>
-    </Background>
+            {spanDamage === false ? (
+              ""
+            ) : (
+              <DamageSpan spanDamage={spanDamage} critical={critical} />
+            )}
+          </div>
+        </Background>
+      </BaseStatusProvider>
+    </SelectedCharacterProvider>
   );
 }
 

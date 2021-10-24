@@ -1,13 +1,9 @@
+import { useSelectedCharacter } from "../contexts/SelectedCharacter";
+
 import "./Select.css";
 
-export const Select = ({
-  selectedRole,
-  selectedEnemy,
-  handleRoleChange,
-  handleEnemyChange,
-  children,
-  ...props
-}) => {
+export const Select = ({ children, ...props }) => {
+  const { handleRoleChange, handleEnemyChange } = useSelectedCharacter();
   return (
     <>
       <select
