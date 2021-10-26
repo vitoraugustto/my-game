@@ -4,7 +4,7 @@ import { PlayerCoins } from "./components/PlayerCoins";
 import { Background } from "./components/Background";
 import { DamageSpan } from "./components/DamageSpan";
 import { Profile } from "./components/Profile";
-import { Button } from "./components/Button";
+import { AttackButton } from "./components/AttackButton";
 
 import SelectedCharacterProvider from "./contexts/SelectedCharacter";
 import EnemyHitPointsProvider from "./contexts/EnemyHitPoints";
@@ -18,11 +18,9 @@ function App() {
             <PlayerCoins marginBottom={"10px"} />
             <Profile isEnemy={false} />
 
-            <Button margin={"10px 0"}>Atacar</Button>
+            <AttackButton margin={"10px 0"}>Atacar</AttackButton>
 
             <Profile isEnemy={true} />
-
-            <DamageSpan />
           </div>
         </Background>
       </EnemyHitPointsProvider>
