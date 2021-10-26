@@ -1,27 +1,50 @@
 import { Avatar } from "./Avatar";
 
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
-import { useBaseStatus } from "../contexts/BaseStatus";
+import { useEnemyHitPoints } from "../contexts/EnemyHitPoints";
+
+import { roles } from "../characters/roles";
+import { enemies } from "../characters/enemies";
 
 import "./Status.css";
+import { useEffect } from "react/cjs/react.development";
 
 export const Status = (props) => {
   const { selectedRole, selectedEnemy } = useSelectedCharacter();
-  const { baseEnemyStatus, baseRoleStatus } = useBaseStatus();
+  const { enemyHitPoints, setEnemyHitPoints } = useEnemyHitPoints();
 
   let isEnemy = props.isEnemy;
+
+  let baseRoleStatus;
+  let baseEnemyStatus;
+
+  selectedRole !== ""
+    ? (baseRoleStatus = roles[selectedRole].baseStatus)
+    : (baseRoleStatus = "");
+
+  selectedEnemy !== ""
+    ? (baseEnemyStatus = enemies[selectedEnemy].baseStatus)
+    : (baseEnemyStatus = "");
+
+  useEffect(() => {
+    setEnemyHitPoints(
+      selectedEnemy !== ""
+        ? enemies[selectedEnemy].baseStatus.baseHitPoints
+        : ""
+    );
+  }, [selectedEnemy]);
 
   function Status() {
     if (isEnemy === true) {
       return (
         <div className="status-container">
           <div className="attributes-container">
-            {baseEnemyStatus.baseHitPoints <= 0 ? (
+            {enemyHitPoints !== "" && enemyHitPoints <= 0 ? (
               `O ${selectedEnemy} morreu. Sem drops, ainda não existem.`
             ) : (
               <>
                 <p>Status do Monstro</p>
-                <span>HP: {baseEnemyStatus.baseHitPoints}</span>
+                <span>HP: {enemyHitPoints}</span>
                 <span>MP: {baseEnemyStatus.baseManaPoints}</span>
                 <span>Ataque: {baseEnemyStatus.baseAttack}</span>
                 <span>Defesa: {baseEnemyStatus.baseDefense}</span>

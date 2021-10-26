@@ -32,10 +32,8 @@ export const roles = {
   },
 };
 
-let allRoles = [];
+export default Object.keys(roles);
 
-for (let role in roles) {
-  allRoles.push(role);
-}
-
-export default allRoles;
+// for (let role in roles) {
+//   allRoles.push(role);
+// }

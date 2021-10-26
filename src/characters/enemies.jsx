@@ -6,36 +6,30 @@ export const enemies = {
   goblin: {
     avatar: goblinAvatar,
     baseStatus: {
-      baseHitPoints: 6,
+      baseHitPoints: 150,
       baseManaPoints: 0,
       baseAttack: 1,
-      baseDefense: 1,
+      baseDefense: 3,
     },
   },
   orc: {
     avatar: orcAvatar,
     baseStatus: {
-      baseHitPoints: 20,
+      baseHitPoints: 300,
       baseManaPoints: 0,
       baseAttack: 3,
-      baseDefense: 10,
+      baseDefense: 6,
     },
   },
   slime: {
     avatar: slimeAvatar,
     baseStatus: {
-      baseHitPoints: 200,
-      baseManaPoints: 0,
+      baseHitPoints: 80,
+      baseManaPoints: 3,
       baseAttack: 1,
-      baseDefense: 9,
+      baseDefense: 2,
     },
   },
 };
 
-let allEnemies = [];
-
-for (let enemy in enemies) {
-  allEnemies.push(enemy);
-}
-
-export default allEnemies;
+export default Object.keys(enemies);
