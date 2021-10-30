@@ -4,6 +4,7 @@ import "./Select.css";
 
 export const Select = ({ children, ...props }) => {
   const { handleRoleChange, handleEnemyChange } = useSelectedCharacter();
+
   return (
     <>
       <select

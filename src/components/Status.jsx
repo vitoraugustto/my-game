@@ -1,17 +1,14 @@
+import { useSelectedCharacter } from "../contexts/SelectedCharacter";
+import { useEnemyStatus } from "../contexts/EnemyStatus";
+import { enemies } from "../characters/enemies";
+import { roles } from "../characters/roles";
 import { Avatar } from "./Avatar";
 
-import { useSelectedCharacter } from "../contexts/SelectedCharacter";
-import { useEnemyHitPoints } from "../contexts/EnemyHitPoints";
-
-import { roles } from "../characters/roles";
-import { enemies } from "../characters/enemies";
-
 import "./Status.css";
-import { useEffect } from "react/cjs/react.development";
 
 export const Status = (props) => {
   const { selectedRole, selectedEnemy } = useSelectedCharacter();
-  const { enemyHitPoints, setEnemyHitPoints } = useEnemyHitPoints();
+  const { enemyHitPoints } = useEnemyStatus();
 
   let isEnemy = props.isEnemy;
 
@@ -26,14 +23,6 @@ export const Status = (props) => {
     ? (baseEnemyStatus = enemies[selectedEnemy].baseStatus)
     : (baseEnemyStatus = "");
 
-  useEffect(() => {
-    setEnemyHitPoints(
-      selectedEnemy !== ""
-        ? enemies[selectedEnemy].baseStatus.baseHitPoints
-        : ""
-    );
-  }, [selectedEnemy]);
-
   function Status() {
     if (isEnemy === true) {
       return (
@@ -44,7 +33,7 @@ export const Status = (props) => {
             ) : (
               <>
                 <p>Status do Monstro</p>
-                <span>HP: {enemyHitPoints}</span>
+                <span>HP: {""}</span>
                 <span>MP: {baseEnemyStatus.baseManaPoints}</span>
                 <span>Ataque: {baseEnemyStatus.baseAttack}</span>
                 <span>Defesa: {baseEnemyStatus.baseDefense}</span>

@@ -1,29 +1,17 @@
-import { useState } from "react";
-
-import { PlayerCoins } from "./components/PlayerCoins";
 import { Background } from "./components/Background";
-import { DamageSpan } from "./components/DamageSpan";
-import { Profile } from "./components/Profile";
-import { AttackButton } from "./components/AttackButton";
 
 import SelectedCharacterProvider from "./contexts/SelectedCharacter";
-import EnemyHitPointsProvider from "./contexts/EnemyHitPoints";
+import EnemyStatusProvider from "./contexts/EnemyStatus";
+import { Combat } from "./components/Combat";
 
 function App() {
   return (
     <SelectedCharacterProvider>
-      <EnemyHitPointsProvider>
+      <EnemyStatusProvider>
         <Background>
-          <div style={{ margin: "0 auto", maxWidth: "400px" }}>
-            <PlayerCoins marginBottom={"10px"} />
-            <Profile isEnemy={false} />
-
-            <AttackButton margin={"10px 0"}>Atacar</AttackButton>
-
-            <Profile isEnemy={true} />
-          </div>
+          <Combat />
         </Background>
-      </EnemyHitPointsProvider>
+      </EnemyStatusProvider>
     </SelectedCharacterProvider>
   );
 }
