@@ -2,12 +2,12 @@ import { useState, useContext, createContext, useEffect } from "react";
 
 import { roles } from "../characters/roles";
 
-import { useSelectedRole } from "./SelectedRole";
+import { useSelectedCharacter } from "./SelectedCharacter";
 
 const RoleStatusContext = createContext();
 
 export default function RoleStatusProvider({ children }) {
-  const { selectedRole } = useSelectedRole();
+  const { selectedRole } = useSelectedCharacter();
 
   const [roleHitPoints, setRoleHitPoints] = useState();
   const [roleManaPoints, setRoleManaPoints] = useState();
@@ -15,17 +15,19 @@ export default function RoleStatusProvider({ children }) {
   const [roleDefense, setRoleDefense] = useState();
 
   useEffect(() => {
-    setRoleHitPoints(
-      sessionStorage.getItem(selectedRole) === null
-        ? roles[selectedRole].baseStatus.baseHitPoints
-        : JSON.parse(sessionStorage.getItem(selectedRole)).hitPoints
-    );
+    if (selectedRole !== "") {
+      setRoleHitPoints(
+        sessionStorage.getItem(selectedRole) === null
+          ? roles[selectedRole].baseStatus.baseHitPoints
+          : JSON.parse(sessionStorage.getItem(selectedRole)).hitPoints
+      );
 
-    setRoleManaPoints(roles[selectedRole].baseStatus.baseManaPoints);
+      setRoleManaPoints(roles[selectedRole].baseStatus.baseManaPoints);
 
-    setRoleAttack(roles[selectedRole].baseStatus.baseAttack);
+      setRoleAttack(roles[selectedRole].baseStatus.baseAttack);
 
-    setRoleDefense(roles[selectedRole].baseStatus.baseDefense);
+      setRoleDefense(roles[selectedRole].baseStatus.baseDefense);
+    }
   }, [selectedRole]);
 
   return (

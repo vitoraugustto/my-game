@@ -1,42 +1,34 @@
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 import { useEnemyStatus } from "../contexts/EnemyStatus";
-import { enemies } from "../characters/enemies";
-import { roles } from "../characters/roles";
+import { useRoleStatus } from "../contexts/RoleStatus";
+
 import { Avatar } from "./Avatar";
 
 import "./Status.css";
 
 export const Status = (props) => {
   const { selectedRole, selectedEnemy } = useSelectedCharacter();
-  const { enemyHitPoints } = useEnemyStatus();
+  const { enemyHitPoints, enemyManaPoints, enemyAttack, enemyDefense } =
+    useEnemyStatus();
+  const { roleHitPoints, roleManaPoints, roleAttack, roleDefense } =
+    useRoleStatus();
 
   let isEnemy = props.isEnemy;
-
-  let baseRoleStatus;
-  let baseEnemyStatus;
-
-  selectedRole !== ""
-    ? (baseRoleStatus = roles[selectedRole].baseStatus)
-    : (baseRoleStatus = "");
-
-  selectedEnemy !== ""
-    ? (baseEnemyStatus = enemies[selectedEnemy].baseStatus)
-    : (baseEnemyStatus = "");
 
   function Status() {
     if (isEnemy === true) {
       return (
         <div className="status-container">
           <div className="attributes-container">
-            {enemyHitPoints !== "" && enemyHitPoints <= 0 ? (
+            {enemyHitPoints <= 0 ? (
               `O ${selectedEnemy} morreu. Sem drops, ainda não existem.`
             ) : (
               <>
                 <p>Status do Monstro</p>
-                <span>HP: {""}</span>
-                <span>MP: {baseEnemyStatus.baseManaPoints}</span>
-                <span>Ataque: {baseEnemyStatus.baseAttack}</span>
-                <span>Defesa: {baseEnemyStatus.baseDefense}</span>
+                <span>HP: {enemyHitPoints}</span>
+                <span>MP: {enemyManaPoints}</span>
+                <span>Ataque: {enemyAttack}</span>
+                <span>Defesa: {enemyDefense}</span>
               </>
             )}
           </div>
@@ -53,10 +45,10 @@ export const Status = (props) => {
         <div className="status-container">
           <div className="attributes-container">
             <p>Status do Personagem</p>
-            <span>HP: {baseRoleStatus.baseHitPoints}</span>
-            <span>MP: {baseRoleStatus.baseManaPoints}</span>
-            <span>Ataque: {baseRoleStatus.baseAttack}</span>
-            <span>Defesa: {baseRoleStatus.baseDefense}</span>
+            <span>HP: {roleHitPoints}</span>
+            <span>MP: {roleManaPoints}</span>
+            <span>Ataque: {roleAttack}</span>
+            <span>Defesa: {roleDefense}</span>
           </div>
 
           {selectedRole === "" ? (

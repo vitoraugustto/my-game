@@ -9,35 +9,37 @@ const EnemyStatusContext = createContext();
 export default function EnemyStatusProvider({ children }) {
   const { selectedEnemy } = useSelectedCharacter();
 
-  const [EnemyHitPoints, setEnemyHitPoints] = useState();
-  const [EnemyManaPoints, setEnemyManaPoints] = useState();
-  const [EnemyAttack, setEnemyAttack] = useState();
-  const [EnemyDefense, setEnemyDefense] = useState();
+  const [enemyHitPoints, setEnemyHitPoints] = useState();
+  const [enemyManaPoints, setEnemyManaPoints] = useState();
+  const [enemyAttack, setEnemyAttack] = useState();
+  const [enemyDefense, setEnemyDefense] = useState();
 
-  // useEffect(() => {
-  //   setEnemyHitPoints(
-  //     sessionStorage.getItem(selectedEnemy) === null
-  //       ? enemies[selectedEnemy].baseStatus.baseHitPoints
-  //       : JSON.parse(sessionStorage.getItem(selectedEnemy)).hitPoints
-  //   );
+  useEffect(() => {
+    if (selectedEnemy !== "") {
+      setEnemyHitPoints(
+        sessionStorage.getItem(selectedEnemy) === null
+          ? enemies[selectedEnemy].baseStatus.baseHitPoints
+          : JSON.parse(sessionStorage.getItem(selectedEnemy)).hitPoints
+      );
 
-  //   setEnemyManaPoints(enemies[selectedEnemy].baseStatus.baseManaPoints);
+      setEnemyManaPoints(enemies[selectedEnemy].baseStatus.baseManaPoints);
 
-  //   setEnemyAttack(enemies[selectedEnemy].baseStatus.baseAttack);
+      setEnemyAttack(enemies[selectedEnemy].baseStatus.baseAttack);
 
-  //   setEnemyDefense(enemies[selectedEnemy].baseStatus.baseDefense);
-  // }, [selectedEnemy]);
+      setEnemyDefense(enemies[selectedEnemy].baseStatus.baseDefense);
+    }
+  }, [selectedEnemy]);
 
   return (
     <EnemyStatusContext.Provider
       value={{
-        EnemyHitPoints,
+        enemyHitPoints,
         setEnemyHitPoints,
-        EnemyManaPoints,
+        enemyManaPoints,
         setEnemyManaPoints,
-        EnemyAttack,
+        enemyAttack,
         setEnemyAttack,
-        EnemyDefense,
+        enemyDefense,
         setEnemyDefense,
       }}
     >
