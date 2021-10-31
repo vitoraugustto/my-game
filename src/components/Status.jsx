@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 import { useEnemyStatus } from "../contexts/EnemyStatus";
 import { useRoleStatus } from "../contexts/RoleStatus";
@@ -13,10 +15,24 @@ export const Status = (props) => {
   const { roleHitPoints, roleManaPoints, roleAttack, roleDefense } =
     useRoleStatus();
 
-  let isEnemy = props.isEnemy;
+  let enemyObj = {
+    hitPoints: enemyHitPoints,
+    manaPoints: enemyManaPoints,
+    attack: enemyAttack,
+    defense: enemyDefense,
+  };
+
+  useEffect(() => {
+    console.log("hp no use effect", enemyHitPoints);
+    if (selectedEnemy !== "") {
+      // sessionStorage.setItem(selectedEnemy, JSON.stringify(enemyObj));
+    } else {
+      return;
+    }
+  }, [selectedEnemy, enemyHitPoints]);
 
   function Status() {
-    if (isEnemy === true) {
+    if (props.isEnemy === true) {
       return (
         <div className="status-container">
           <div className="attributes-container">
@@ -33,11 +49,7 @@ export const Status = (props) => {
             )}
           </div>
 
-          {selectedEnemy === "" ? (
-            ""
-          ) : (
-            <Avatar isEnemy={isEnemy} selectedEnemy={selectedEnemy} />
-          )}
+          {selectedEnemy === "" ? "" : <Avatar isEnemy={props.isEnemy} />}
         </div>
       );
     } else {
@@ -51,11 +63,7 @@ export const Status = (props) => {
             <span>Defesa: {roleDefense}</span>
           </div>
 
-          {selectedRole === "" ? (
-            ""
-          ) : (
-            <Avatar isEnemy={isEnemy} selectedRole={selectedRole} />
-          )}
+          {selectedRole === "" ? "" : <Avatar isEnemy={props.isEnemy} />}
         </div>
       );
     }

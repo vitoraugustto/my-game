@@ -16,11 +16,11 @@ export default function EnemyStatusProvider({ children }) {
 
   useEffect(() => {
     if (selectedEnemy !== "") {
-      setEnemyHitPoints(
-        sessionStorage.getItem(selectedEnemy) === null
-          ? enemies[selectedEnemy].baseStatus.baseHitPoints
-          : JSON.parse(sessionStorage.getItem(selectedEnemy)).hitPoints
-      );
+      sessionStorage.getItem(selectedEnemy) === null
+        ? setEnemyHitPoints(enemies[selectedEnemy].baseStatus.baseHitPoints)
+        : setEnemyHitPoints(
+            JSON.parse(sessionStorage.getItem(selectedEnemy)).hitPoints
+          );
 
       setEnemyManaPoints(enemies[selectedEnemy].baseStatus.baseManaPoints);
 
