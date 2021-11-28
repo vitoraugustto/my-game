@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 import { useEnemyStatus } from "../contexts/EnemyStatus";
 import { useRoleStatus } from "../contexts/RoleStatus";
@@ -15,21 +13,18 @@ export const Status = (props) => {
   const { roleHitPoints, roleManaPoints, roleAttack, roleDefense } =
     useRoleStatus();
 
-  let enemyObj = {
-    hitPoints: enemyHitPoints,
-    manaPoints: enemyManaPoints,
-    attack: enemyAttack,
-    defense: enemyDefense,
-  };
-
-  useEffect(() => {
-    console.log("hp no use effect", enemyHitPoints);
-    if (selectedEnemy !== "") {
-      // sessionStorage.setItem(selectedEnemy, JSON.stringify(enemyObj));
-    } else {
-      return;
-    }
-  }, [selectedEnemy, enemyHitPoints]);
+  // useEffect(() => {
+  //   if (selectedEnemy !== "")
+  //     sessionStorage.setItem(
+  //       selectedEnemy,
+  //       JSON.stringify({
+  //         hitPoints: enemyHitPoints,
+  //         manaPoints: enemyManaPoints,
+  //         attack: enemyAttack,
+  //         defense: enemyDefense,
+  //       })
+  //     );
+  // }, [selectedEnemy]);
 
   function Status() {
     if (props.isEnemy === true) {

@@ -13,22 +13,31 @@ export default function EnemyStatusProvider({ children }) {
   const [enemyManaPoints, setEnemyManaPoints] = useState();
   const [enemyAttack, setEnemyAttack] = useState();
   const [enemyDefense, setEnemyDefense] = useState();
+  const [isDead, setIsDead] = useState(false);
 
   useEffect(() => {
     if (selectedEnemy !== "") {
-      sessionStorage.getItem(selectedEnemy) === null
-        ? setEnemyHitPoints(enemies[selectedEnemy].baseStatus.baseHitPoints)
-        : setEnemyHitPoints(
-            JSON.parse(sessionStorage.getItem(selectedEnemy)).hitPoints
-          );
+      // sessionStorage.getItem(selectedEnemy) === null
+      //   ? setEnemyHitPoints(enemies[selectedEnemy].baseStatus.baseHitPoints)
+      //   : setEnemyHitPoints(
+      //       JSON.parse(sessionStorage.getItem(selectedEnemy)).hitPoints
+      //     );
+
+      setEnemyHitPoints(enemies[selectedEnemy].baseStatus.baseHitPoints);
 
       setEnemyManaPoints(enemies[selectedEnemy].baseStatus.baseManaPoints);
 
       setEnemyAttack(enemies[selectedEnemy].baseStatus.baseAttack);
 
       setEnemyDefense(enemies[selectedEnemy].baseStatus.baseDefense);
+
+      setIsDead(false);
     }
   }, [selectedEnemy]);
+
+  useEffect(() => {
+    if (enemyHitPoints <= 0) setIsDead(true);
+  }, [enemyHitPoints]);
 
   return (
     <EnemyStatusContext.Provider
@@ -41,6 +50,8 @@ export default function EnemyStatusProvider({ children }) {
         setEnemyAttack,
         enemyDefense,
         setEnemyDefense,
+        isDead,
+        setIsDead,
       }}
     >
       {children}

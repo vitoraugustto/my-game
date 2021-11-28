@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 
 import { getIntervalDamage } from "../utils/functions";
@@ -7,15 +5,12 @@ import { getIntervalDamage } from "../utils/functions";
 import { enemies } from "../characters/enemies";
 import { roles } from "../characters/roles";
 
-import { persistEnemy } from "../utils/functions";
 import { AttackButton } from "./AttackButton";
 import { PlayerCoins } from "./PlayerCoins";
-import { DamageSpan } from "./DamageSpan";
 import { Profile } from "./Profile";
 
 export const Combat = () => {
   const { selectedEnemy, selectedRole } = useSelectedCharacter();
-  // const [critical, setCritical] = useState();
 
   function attack() {
     const rawDamage = roles[selectedRole].baseStatus.baseAttack;
@@ -31,12 +26,6 @@ export const Combat = () => {
       criticalHitChance <= multiplier
         ? intervalDamage * criticalDamage
         : intervalDamage;
-
-    // if (criticalHitChance <= multiplier) {
-    //   setCritical(true);
-    // } else {
-    //   setCritical(false);
-    // }
 
     let finalDamage =
       rawFinalDamage - enemies[selectedEnemy].baseStatus.baseDefense;
@@ -62,8 +51,6 @@ export const Combat = () => {
       </AttackButton>
 
       <Profile isEnemy={true} />
-
-      {/* <DamageSpan /> */}
     </div>
   );
 };

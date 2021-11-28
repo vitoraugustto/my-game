@@ -9,13 +9,12 @@ import "./PlayerCoins.css";
 
 export const PlayerCoins = (props) => {
   const { playerCoins, setPlayerCoins } = usePlayerCoins();
-  const { enemyHitPoints } = useEnemyStatus();
+  const { isDead } = useEnemyStatus();
 
   useEffect(() => {
-    if (enemyHitPoints <= 0) {
-      setPlayerCoins(playerCoins + 2);
-    }
-  }, [enemyHitPoints]);
+    if (isDead === true) setPlayerCoins(parseInt(playerCoins) + 2);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDead]);
 
   useEffect(() => {
     sessionStorage.setItem("playerCoins", playerCoins);
