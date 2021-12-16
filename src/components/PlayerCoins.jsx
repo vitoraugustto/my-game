@@ -25,7 +25,9 @@ export const PlayerCoins = (props) => {
       className="wrapper-player-coins"
     >
       <img className="image-coins" src={coins} alt="player coins" />
-      <span className="span-player-coins">{playerCoins} coins</span>
+      <span className="span-player-coins">
+        {playerCoins} {playerCoins === 0 ? "moeda" : "moedas"}
+      </span>
     </div>
   );
 };
