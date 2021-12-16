@@ -3,8 +3,8 @@ import { createContext, useState, useContext } from "react";
 const SelectedCharacterContext = createContext();
 
 export default function SelectedCharacterProvider({ children }) {
-  const [selectedRole, setSelectedRole] = useState("");
-  const [selectedEnemy, setSelectedEnemy] = useState("");
+  const [selectedRole, setSelectedRole] = useState("warrior");
+  const [selectedEnemy, setSelectedEnemy] = useState("goblin");
 
   function handleRoleChange(e) {
     setSelectedRole(e.target.value);

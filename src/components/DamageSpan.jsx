@@ -1,17 +1,22 @@
+import { useRoleStatus } from "../contexts/RoleStatus";
 import "./DamageSpan.css";
 
-export const DamageSpan = ({ critical }) => {
+export const DamageSpan = () => {
+  const { critical, finalDamage } = useRoleStatus();
+
   function Span() {
-    if (critical === true) {
+    if (critical) {
       return (
         <span className="damage-span-crit">
-          Você desferiu <span>0</span> de dano crítico ao inimigo!
+          Você desferiu <span>{finalDamage}</span> de dano crítico ao inimigo!
         </span>
       );
     } else {
-      return (
+      return finalDamage === null ? (
+        ""
+      ) : (
         <span className="damage-span">
-          Você desferiu <span>0</span> de dano ao inimigo!
+          Você desferiu <span>{finalDamage}</span> de dano ao inimigo!
         </span>
       );
     }

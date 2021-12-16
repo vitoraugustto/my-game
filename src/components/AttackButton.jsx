@@ -1,13 +1,13 @@
-import { useEnemyStatus } from "../contexts/EnemyStatus";
+import { useRoleStatus } from "../contexts/RoleStatus";
 
 import "./AttackButton.css";
 
-export const AttackButton = ({ attack, children, ...props }) => {
-  const { enemyHitPoints, setEnemyHitPoints } = useEnemyStatus();
+export const AttackButton = ({ children, ...props }) => {
+  const { attack } = useRoleStatus();
 
   return (
     <button
-      onClick={() => setEnemyHitPoints(enemyHitPoints - attack())}
+      onClick={() => attack()}
       style={{ margin: props.margin }}
       className="attack-button"
     >

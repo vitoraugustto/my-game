@@ -16,23 +16,21 @@ export default function EnemyStatusProvider({ children }) {
   const [isDead, setIsDead] = useState(false);
 
   useEffect(() => {
-    if (selectedEnemy !== "") {
-      // sessionStorage.getItem(selectedEnemy) === null
-      //   ? setEnemyHitPoints(enemies[selectedEnemy].baseStatus.baseHitPoints)
-      //   : setEnemyHitPoints(
-      //       JSON.parse(sessionStorage.getItem(selectedEnemy)).hitPoints
-      //     );
+    // sessionStorage.getItem(selectedEnemy) === null
+    //   ? setEnemyHitPoints(enemies[selectedEnemy].baseStatus.baseHitPoints)
+    //   : setEnemyHitPoints(
+    //       JSON.parse(sessionStorage.getItem(selectedEnemy)).hitPoints
+    //     );
 
-      setEnemyHitPoints(enemies[selectedEnemy].baseStatus.baseHitPoints);
+    setEnemyHitPoints(enemies[selectedEnemy].baseStatus.baseHitPoints);
 
-      setEnemyManaPoints(enemies[selectedEnemy].baseStatus.baseManaPoints);
+    setEnemyManaPoints(enemies[selectedEnemy].baseStatus.baseManaPoints);
 
-      setEnemyAttack(enemies[selectedEnemy].baseStatus.baseAttack);
+    setEnemyAttack(enemies[selectedEnemy].baseStatus.baseAttack);
 
-      setEnemyDefense(enemies[selectedEnemy].baseStatus.baseDefense);
+    setEnemyDefense(enemies[selectedEnemy].baseStatus.baseDefense);
 
-      setIsDead(false);
-    }
+    setIsDead(false);
   }, [selectedEnemy]);
 
   useEffect(() => {

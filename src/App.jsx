@@ -2,21 +2,33 @@ import { Background } from "./components/Background";
 
 import SelectedCharacterProvider from "./contexts/SelectedCharacter";
 import EnemyStatusProvider from "./contexts/EnemyStatus";
-import { Combat } from "./components/Combat";
+import { DamageSpan } from "./components/DamageSpan";
+
 import RoleStatusProvider from "./contexts/RoleStatus";
 import PlayerCoinsProvider from "./contexts/PlayerCoins";
+import { PlayerCoins } from "./components/PlayerCoins";
+import { Profile } from "./components/Profile";
+import { AttackButton } from "./components/AttackButton";
 
 function App() {
   return (
     <PlayerCoinsProvider>
       <SelectedCharacterProvider>
-        <RoleStatusProvider>
-          <EnemyStatusProvider>
+        <EnemyStatusProvider>
+          <RoleStatusProvider>
             <Background>
-              <Combat />
+              <div style={{ margin: "0 auto", maxWidth: "400px" }}>
+                <PlayerCoins marginBottom={"10px"} />
+                <Profile isEnemy={false} />
+
+                <AttackButton margin={"10px 0"}>Atacar</AttackButton>
+
+                <Profile isEnemy={true} />
+                <DamageSpan />
+              </div>
             </Background>
-          </EnemyStatusProvider>
-        </RoleStatusProvider>
+          </RoleStatusProvider>
+        </EnemyStatusProvider>
       </SelectedCharacterProvider>
     </PlayerCoinsProvider>
   );

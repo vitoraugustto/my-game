@@ -8,22 +8,21 @@ import "./Status.css";
 
 export const Status = (props) => {
   const { selectedRole, selectedEnemy } = useSelectedCharacter();
-  const { enemyHitPoints, enemyManaPoints, enemyAttack, enemyDefense } =
+  const { enemyHitPoints, enemyManaPoints, enemyAttack, enemyDefense, isDead } =
     useEnemyStatus();
   const { roleHitPoints, roleManaPoints, roleAttack, roleDefense } =
     useRoleStatus();
 
   // useEffect(() => {
-  //   if (selectedEnemy !== "")
-  //     sessionStorage.setItem(
-  //       selectedEnemy,
-  //       JSON.stringify({
-  //         hitPoints: enemyHitPoints,
-  //         manaPoints: enemyManaPoints,
-  //         attack: enemyAttack,
-  //         defense: enemyDefense,
-  //       })
-  //     );
+  //   sessionStorage.setItem(
+  //     selectedEnemy,
+  //     JSON.stringify({
+  //       hitPoints: enemyHitPoints,
+  //       manaPoints: enemyManaPoints,
+  //       attack: enemyAttack,
+  //       defense: enemyDefense,
+  //     })
+  //   );
   // }, [selectedEnemy]);
 
   function Status() {
@@ -31,7 +30,7 @@ export const Status = (props) => {
       return (
         <div className="status-container">
           <div className="attributes-container">
-            {enemyHitPoints <= 0 ? (
+            {isDead ? (
               `O ${selectedEnemy} morreu. Sem drops, ainda não existem.`
             ) : (
               <>
