@@ -19,6 +19,7 @@ export const PlayerCoins = (props) => {
   useEffect(() => {
     sessionStorage.setItem("playerCoins", playerCoins);
   }, [playerCoins]);
+
   return (
     <div
       style={{ marginBottom: props.marginBottom }}
@@ -26,7 +27,7 @@ export const PlayerCoins = (props) => {
     >
       <img className="image-coins" src={coins} alt="player coins" />
       <span className="span-player-coins">
-        {playerCoins} {playerCoins === 0 ? "moeda" : "moedas"}
+        {playerCoins} {playerCoins > 0 ? "moedas" : "moeda"}
       </span>
     </div>
   );
