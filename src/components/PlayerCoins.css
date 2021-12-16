@@ -12,6 +12,7 @@
   padding: 2px;
   margin: 0 auto;
   border-radius: 10px;
+  border: 1px solid #606060;
 }
 
 .span-player-coins {
