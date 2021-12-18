@@ -4,7 +4,6 @@ import { usePlayerCoins } from "../contexts/PlayerCoins";
 import { useEnemyStatus } from "../contexts/EnemyStatus";
 
 import coins from "../assets/images/coins.png";
-
 import "./PlayerCoins.css";
 
 export const PlayerCoins = (props) => {
@@ -13,7 +12,6 @@ export const PlayerCoins = (props) => {
 
   useEffect(() => {
     if (isDead === true) setPlayerCoins(parseInt(playerCoins) + 1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDead]);
 
   useEffect(() => {

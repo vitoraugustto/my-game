@@ -59,7 +59,6 @@ export default function RoleStatusProvider({ children }) {
         : rawFinalDamage - enemies[selectedEnemy].baseStatus.baseDefense;
 
     setFinalDamage(hitDamage);
-    console.log(hitDamage);
 
     return setEnemyHitPoints(enemyHitPoints - hitDamage);
   }

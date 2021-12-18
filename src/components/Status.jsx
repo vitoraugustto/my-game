@@ -1,29 +1,48 @@
+import { useEffect } from "react";
+
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 import { useEnemyStatus } from "../contexts/EnemyStatus";
 import { useRoleStatus } from "../contexts/RoleStatus";
+
+import allEnemies from "../characters/enemies";
+import { enemies } from "../characters/enemies";
 
 import { Avatar } from "./Avatar";
 
 import "./Status.css";
 
 export const Status = (props) => {
-  const { selectedRole, selectedEnemy } = useSelectedCharacter();
+  const { selectedEnemy } = useSelectedCharacter();
   const { enemyHitPoints, enemyManaPoints, enemyAttack, enemyDefense, isDead } =
     useEnemyStatus();
   const { roleHitPoints, roleManaPoints, roleAttack, roleDefense } =
     useRoleStatus();
 
-  // useEffect(() => {
-  //   sessionStorage.setItem(
-  //     selectedEnemy,
-  //     JSON.stringify({
-  //       hitPoints: enemyHitPoints,
-  //       manaPoints: enemyManaPoints,
-  //       attack: enemyAttack,
-  //       defense: enemyDefense,
-  //     })
-  //   );
-  // }, [selectedEnemy]);
+  if (!sessionStorage.getItem("goblin")) {
+    for (let i = 0; i < allEnemies.length; i++) {
+      sessionStorage.setItem(
+        allEnemies[i],
+        JSON.stringify({
+          hitPoints: enemies[allEnemies[i]].baseStatus.baseHitPoints,
+          manaPoints: enemies[allEnemies[i]].baseStatus.baseManaPoints,
+          attack: enemies[allEnemies[i]].baseStatus.baseAttack,
+          defense: enemies[allEnemies[i]].baseStatus.baseDefense,
+        })
+      );
+    }
+  }
+
+  const monsterStatus = JSON.parse(sessionStorage.getItem(selectedEnemy));
+
+  useEffect(() => {
+    monsterStatus.hitPoints = enemyHitPoints;
+
+    if (monsterStatus.hitPoints <= 0) monsterStatus.hitPoints = 0;
+
+    if (enemyHitPoints) {
+      sessionStorage.setItem(selectedEnemy, JSON.stringify(monsterStatus));
+    }
+  }, [enemyHitPoints]);
 
   function Status() {
     if (props.isEnemy === true) {
@@ -43,7 +62,7 @@ export const Status = (props) => {
             )}
           </div>
 
-          {selectedEnemy === "" ? "" : <Avatar isEnemy={props.isEnemy} />}
+          <Avatar isEnemy={props.isEnemy} />
         </div>
       );
     } else {
@@ -57,7 +76,7 @@ export const Status = (props) => {
             <span>Defesa: {roleDefense}</span>
           </div>
 
-          {selectedRole === "" ? "" : <Avatar isEnemy={props.isEnemy} />}
+          <Avatar isEnemy={props.isEnemy} />
         </div>
       );
     }
