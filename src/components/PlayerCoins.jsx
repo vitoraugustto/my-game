@@ -12,7 +12,7 @@ export const PlayerCoins = (props) => {
   const { isDead } = useEnemyStatus();
 
   useEffect(() => {
-    if (isDead === true) setPlayerCoins(parseInt(playerCoins) + 2);
+    if (isDead === true) setPlayerCoins(parseInt(playerCoins) + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDead]);
 
@@ -27,7 +27,7 @@ export const PlayerCoins = (props) => {
     >
       <img className="image-coins" src={coins} alt="player coins" />
       <span className="span-player-coins">
-        {playerCoins} {playerCoins > 0 ? "moedas" : "moeda"}
+        {playerCoins} {playerCoins === 1 ? "moeda" : "moedas"}
       </span>
     </div>
   );
