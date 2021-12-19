@@ -25,7 +25,7 @@ export default function EnemyStatusProvider({ children }) {
     setEnemyAttack(enemies[selectedEnemy].baseStatus.baseAttack);
 
     setEnemyDefense(enemies[selectedEnemy].baseStatus.baseDefense);
-  }, [selectedEnemy]);
+  }, [selectedEnemy, enemyHitPoints]);
 
   useEffect(() => {
     if (enemyHitPoints <= 0) {
