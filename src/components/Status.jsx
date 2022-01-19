@@ -39,7 +39,7 @@ export const Status = (props) => {
 
     if (monsterStatus.hitPoints <= 0) monsterStatus.hitPoints = 0;
 
-    if (monsterStatus.hitPoints) {
+    if (monsterStatus.hitPoints !== undefined) {
       sessionStorage.setItem(selectedEnemy, JSON.stringify(monsterStatus));
     }
   }, [enemyHitPoints]);
