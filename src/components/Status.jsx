@@ -39,7 +39,7 @@ export const Status = (props) => {
 
     if (monsterStatus.hitPoints <= 0) monsterStatus.hitPoints = 0;
 
-    if (enemyHitPoints) {
+    if (monsterStatus.hitPoints) {
       sessionStorage.setItem(selectedEnemy, JSON.stringify(monsterStatus));
     }
   }, [enemyHitPoints]);
@@ -49,7 +49,7 @@ export const Status = (props) => {
       return (
         <div className="status-container">
           <div className="attributes-container">
-            {isDead ? (
+            {enemyHitPoints <= 0 ? (
               `O ${selectedEnemy} morreu. Sem drops, ainda não existem.`
             ) : (
               <>

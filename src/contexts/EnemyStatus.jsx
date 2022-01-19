@@ -13,7 +13,6 @@ export default function EnemyStatusProvider({ children }) {
   const [enemyManaPoints, setEnemyManaPoints] = useState();
   const [enemyAttack, setEnemyAttack] = useState();
   const [enemyDefense, setEnemyDefense] = useState();
-  const [isDead, setIsDead] = useState(false);
 
   useEffect(() => {
     setEnemyHitPoints(
@@ -27,14 +26,6 @@ export default function EnemyStatusProvider({ children }) {
     setEnemyDefense(enemies[selectedEnemy].baseStatus.baseDefense);
   }, [selectedEnemy, enemyHitPoints]);
 
-  useEffect(() => {
-    if (enemyHitPoints <= 0) {
-      setIsDead(true);
-    } else {
-      setIsDead(false);
-    }
-  }, [enemyHitPoints]);
-
   return (
     <EnemyStatusContext.Provider
       value={{
@@ -46,8 +37,6 @@ export default function EnemyStatusProvider({ children }) {
         setEnemyAttack,
         enemyDefense,
         setEnemyDefense,
-        isDead,
-        setIsDead,
       }}
     >
       {children}

@@ -6,7 +6,7 @@ export const enemies = {
   goblin: {
     avatar: goblinAvatar,
     baseStatus: {
-      baseHitPoints: 150,
+      baseHitPoints: 35,
       baseManaPoints: 0,
       baseAttack: 1,
       baseDefense: 3,
@@ -15,7 +15,7 @@ export const enemies = {
   orc: {
     avatar: orcAvatar,
     baseStatus: {
-      baseHitPoints: 300,
+      baseHitPoints: 60,
       baseManaPoints: 0,
       baseAttack: 3,
       baseDefense: 6,
@@ -24,7 +24,7 @@ export const enemies = {
   slime: {
     avatar: slimeAvatar,
     baseStatus: {
-      baseHitPoints: 80,
+      baseHitPoints: 10,
       baseManaPoints: 3,
       baseAttack: 1,
       baseDefense: 2,

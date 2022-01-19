@@ -8,11 +8,11 @@ import "./PlayerCoins.css";
 
 export const PlayerCoins = (props) => {
   const { playerCoins, setPlayerCoins } = usePlayerCoins();
-  const { isDead } = useEnemyStatus();
+  const { enemyHitPoints } = useEnemyStatus();
 
   useEffect(() => {
-    if (isDead === true) setPlayerCoins(parseInt(playerCoins) + 1);
-  }, [isDead]);
+    if (enemyHitPoints === 0) setPlayerCoins(parseInt(playerCoins) + 1);
+  }, [enemyHitPoints]);
 
   useEffect(() => {
     sessionStorage.setItem("playerCoins", playerCoins);
