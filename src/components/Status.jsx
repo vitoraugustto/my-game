@@ -13,7 +13,7 @@ import "./Status.css";
 
 export const Status = (props) => {
   const { selectedEnemy } = useSelectedCharacter();
-  const { enemyHitPoints, enemyManaPoints, enemyAttack, enemyDefense, isDead } =
+  const { enemyHitPoints, enemyManaPoints, enemyAttack, enemyDefense } =
     useEnemyStatus();
   const { roleHitPoints, roleManaPoints, roleAttack, roleDefense } =
     useRoleStatus();
@@ -32,9 +32,9 @@ export const Status = (props) => {
     }
   }
 
-  const monsterStatus = JSON.parse(sessionStorage.getItem(selectedEnemy));
-
   useEffect(() => {
+    const monsterStatus = JSON.parse(sessionStorage.getItem(selectedEnemy));
+
     monsterStatus.hitPoints = enemyHitPoints;
 
     if (monsterStatus.hitPoints <= 0) monsterStatus.hitPoints = 0;

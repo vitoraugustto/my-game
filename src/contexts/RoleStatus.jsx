@@ -17,6 +17,9 @@ export default function RoleStatusProvider({ children }) {
   const [roleManaPoints, setRoleManaPoints] = useState();
   const [roleAttack, setRoleAttack] = useState();
   const [roleDefense, setRoleDefense] = useState();
+  const [finalDamage, setFinalDamage] = useState(null);
+  const [critical, setCritical] = useState(false);
+  const [countDamage, setCountDamage] = useState(0);
 
   useEffect(() => {
     setRoleHitPoints(roles[selectedRole].baseStatus.baseHitPoints);
@@ -36,8 +39,9 @@ export default function RoleStatusProvider({ children }) {
   const totalCriticalChance = baseCriticalHitChance + weaponCriticalHitChance;
   const criticalDamage = 3;
 
-  const [finalDamage, setFinalDamage] = useState(null);
-  const [critical, setCritical] = useState(false);
+  useEffect(() => {
+    setFinalDamage(null);
+  }, [selectedRole, selectedEnemy]);
 
   function attack() {
     let intervalDamage = getIntervalDamage(minHitDamage, maxHitDamage);
@@ -47,11 +51,9 @@ export default function RoleStatusProvider({ children }) {
         ? intervalDamage * criticalDamage
         : intervalDamage;
 
-    if (criticalHitChance <= totalCriticalChance) {
-      setCritical(true);
-    } else {
-      setCritical(false);
-    }
+    criticalHitChance <= totalCriticalChance
+      ? setCritical(true)
+      : setCritical(false);
 
     let hitDamage =
       rawFinalDamage - enemies[selectedEnemy].baseStatus.baseDefense <= 0
@@ -59,6 +61,7 @@ export default function RoleStatusProvider({ children }) {
         : rawFinalDamage - enemies[selectedEnemy].baseStatus.baseDefense;
 
     setFinalDamage(hitDamage);
+    setCountDamage(countDamage + hitDamage);
 
     return setEnemyHitPoints(enemyHitPoints - hitDamage);
   }

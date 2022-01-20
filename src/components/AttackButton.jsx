@@ -7,8 +7,6 @@ export const AttackButton = ({ children, ...props }) => {
   const { attack } = useRoleStatus();
   const { enemyHitPoints } = useEnemyStatus();
 
-  console.log(enemyHitPoints);
-
   return (
     <button
       onClick={() => attack()}
