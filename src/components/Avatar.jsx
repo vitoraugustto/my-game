@@ -1,17 +1,19 @@
-import { roles } from "../characters/roles";
-import { enemies } from "../characters/enemies";
+import styled from "styled-components";
 
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 
-import "./Avatar.css";
+import Image from "./Image";
 
-export const Avatar = (props) => {
+import { roles } from "../characters/roles";
+import { enemies } from "../characters/enemies";
+
+export const Avatar = ({ isEnemy = false }) => {
   const { selectedRole, selectedEnemy } = useSelectedCharacter();
   let avatarSrc;
   let avatarAlt;
 
-  if (props.isEnemy === true ? selectedEnemy : selectedRole) {
-    if (props.isEnemy === true) {
+  if (isEnemy ? selectedEnemy : selectedRole) {
+    if (isEnemy) {
       avatarSrc = enemies[selectedEnemy].avatar;
       avatarAlt = selectedEnemy;
     } else {
@@ -20,5 +22,5 @@ export const Avatar = (props) => {
     }
   }
 
-  return <img className="role-avatar" src={avatarSrc} alt={avatarAlt} />;
+  return <Image large src={avatarSrc} alt={avatarAlt} />;
 };

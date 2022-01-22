@@ -1,20 +1,24 @@
-import { useSelectedCharacter } from "../contexts/SelectedCharacter";
+import styled from "styled-components";
 
-import "./Select.css";
+const StyledSelect = styled.select`
+  display: block;
+  padding: 10px 2px;
+  color: white;
+  background-color: #202020;
+  font-size: 20px;
+  text-align: center;
+  border: none;
+  outline: none;
+`;
 
-export const Select = ({ children, ...props }) => {
-  const { handleRoleChange, handleEnemyChange } = useSelectedCharacter();
-
+export default function Select({ children, ...props }) {
   return (
-    <>
-      <select
-        style={{ width: props.width }}
-        defaultValue={props.defaultValue}
-        className="select"
-        onChange={props.isEnemy === true ? handleEnemyChange : handleRoleChange}
-      >
-        {children}
-      </select>
-    </>
+    <StyledSelect
+      style={{ width: props.width }}
+      defaultValue={props.defaultValue}
+      onChange={props.onChange}
+    >
+      {children}
+    </StyledSelect>
   );
-};
+}

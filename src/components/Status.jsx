@@ -62,7 +62,7 @@ export const Status = (props) => {
             )}
           </div>
 
-          <Avatar isEnemy={props.isEnemy} />
+          <Avatar isEnemy />
         </div>
       );
     } else {
@@ -76,7 +76,7 @@ export const Status = (props) => {
             <span>Defesa: {roleDefense}</span>
           </div>
 
-          <Avatar isEnemy={props.isEnemy} />
+          <Avatar />
         </div>
       );
     }

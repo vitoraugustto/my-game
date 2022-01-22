@@ -1,15 +1,12 @@
-import { Background } from "./components/Background";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import SelectedCharacterProvider from "./contexts/SelectedCharacter";
-import EnemyStatusProvider from "./contexts/EnemyStatus";
-import { DamageSpan } from "./components/DamageSpan";
-
-import RoleStatusProvider from "./contexts/RoleStatus";
 import PlayerCoinsProvider from "./contexts/PlayerCoins";
-import { PlayerCoins } from "./components/PlayerCoins";
-import { Profile } from "./components/Profile";
-import { AttackButton } from "./components/AttackButton";
-import { Utilities } from "./components/Utilities";
+import EnemyStatusProvider from "./contexts/EnemyStatus";
+import RoleStatusProvider from "./contexts/RoleStatus";
+
+import CombatScreen from "./pages/CombatScreen";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -17,18 +14,12 @@ function App() {
       <SelectedCharacterProvider>
         <EnemyStatusProvider>
           <RoleStatusProvider>
-            <Background>
-              <div style={{ margin: "0 auto", maxWidth: "400px" }}>
-                <PlayerCoins marginBottom={"10px"} />
-                <Utilities />
-                <Profile isEnemy={false} />
-
-                <AttackButton margin={"10px 0"}>Atacar</AttackButton>
-
-                <Profile isEnemy={true} />
-                <DamageSpan />
-              </div>
-            </Background>
+            <Router>
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/combat-screen" element={<CombatScreen />} />
+              </Routes>
+            </Router>
           </RoleStatusProvider>
         </EnemyStatusProvider>
       </SelectedCharacterProvider>
