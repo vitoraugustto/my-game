@@ -8,6 +8,8 @@ import allEnemies from "../characters/enemies";
 import { enemies } from "../characters/enemies";
 
 import { Avatar } from "./Avatar";
+import Text from "./ui/Text";
+import Span from "./ui/Span";
 
 import "./Status.css";
 
@@ -53,30 +55,26 @@ export const Status = (props) => {
               `O ${selectedEnemy} morreu. Sem drops, ainda não existem.`
             ) : (
               <>
-                <p>Status do Monstro</p>
-                <span>HP: {enemyHitPoints}</span>
-                <span>MP: {enemyManaPoints}</span>
-                <span>Ataque: {enemyAttack}</span>
-                <span>Defesa: {enemyDefense}</span>
+                <Text>Status do Monstro</Text>
+                <Span>HP: {enemyHitPoints}</Span>
+                <Span>MP: {enemyManaPoints}</Span>
+                <Span>Ataque: {enemyAttack}</Span>
+                <Span>Defesa: {enemyDefense}</Span>
               </>
             )}
           </div>
-
-          <Avatar isEnemy />
         </div>
       );
     } else {
       return (
         <div className="status-container">
           <div className="attributes-container">
-            <p>Status do Personagem</p>
-            <span>HP: {roleHitPoints}</span>
-            <span>MP: {roleManaPoints}</span>
-            <span>Ataque: {roleAttack}</span>
-            <span>Defesa: {roleDefense}</span>
+            <Text>Status do Personagem</Text>
+            <Span>HP: {roleHitPoints}</Span>
+            <Span>MP: {roleManaPoints}</Span>
+            <Span>Ataque: {roleAttack}</Span>
+            <Span>Defesa: {roleDefense}</Span>
           </div>
-
-          <Avatar />
         </div>
       );
     }

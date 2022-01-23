@@ -1,29 +1,27 @@
-import Button from "../components/Button";
-import Select from "../components/Select";
-import Background from "../components/Background";
-
-import { DamageSpan } from "../components/DamageSpan";
+import Button from "../components/ui/Button";
+import Background from "../components/layout/Background";
+import { DamageDealt } from "../components/combat/DamageDealt";
 import { PlayerCoins } from "../components/PlayerCoins";
 import { Profile } from "../components/Profile";
-import { Utilities } from "../components/Utilities";
+import { Utilities } from "../components/combat/Utilities";
 import GlobalStyle from "../theme/globalStyle";
 
-const CombatScreen = () => {
+import { Status } from "../components/Status";
+
+export default function CombatScreen() {
   return (
     <Background>
       <GlobalStyle />
       <div style={{ margin: "0 auto", maxWidth: "400px" }}>
-        <PlayerCoins marginBottom={"10px"} />
+        <PlayerCoins />
         <Utilities />
         <Profile />
 
         <Button margin={"10px 0"}>Atacar</Button>
 
         <Profile isEnemy />
-        <DamageSpan />
+        <DamageDealt />
       </div>
     </Background>
   );
-};
-
-export default CombatScreen;
+}

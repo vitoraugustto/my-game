@@ -1,11 +1,12 @@
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 
+import Container from "./layout/Container";
 import { Status } from "./Status";
-import Select from "./Select";
+import Select from "./ui/Select";
+
 import allEnemies from "../characters/enemies";
 import allRoles from "../characters/roles";
-
-import "./Profile.css";
+import { Avatar } from "./Avatar";
 
 export const Profile = (props) => {
   const { selectedRole, selectedEnemy, handleEnemyChange, handleRoleChange } =
@@ -13,8 +14,8 @@ export const Profile = (props) => {
 
   let isEnemy = props.isEnemy;
 
-  return isEnemy === true ? (
-    <div className="role-profile">
+  return isEnemy ? (
+    <Container width={"400px"}>
       <Select
         onChange={handleEnemyChange}
         isEnemy={isEnemy}
@@ -30,10 +31,11 @@ export const Profile = (props) => {
           </option>
         ))}
       </Select>
-      <Status isEnemy={isEnemy} />
-    </div>
+      <Status isEnemy />
+      {/* <Avatar isEnemy /> */}
+    </Container>
   ) : (
-    <div className="role-profile">
+    <Container width={"400px"}>
       <Select
         onChange={handleRoleChange}
         isEnemy={isEnemy}
@@ -49,7 +51,8 @@ export const Profile = (props) => {
           </option>
         ))}
       </Select>
-      <Status isEnemy={isEnemy} />
-    </div>
+      <Status />
+      {/* <Avatar /> */}
+    </Container>
   );
 };

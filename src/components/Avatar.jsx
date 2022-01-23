@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 import { useSelectedCharacter } from "../contexts/SelectedCharacter";
 
-import Image from "./Image";
-
 import { roles } from "../characters/roles";
 import { enemies } from "../characters/enemies";
+
+import Image from "./ui/Image";
 
 export const Avatar = ({ isEnemy = false }) => {
   const { selectedRole, selectedEnemy } = useSelectedCharacter();

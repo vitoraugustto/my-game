@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 
+import Container from "./layout/Container";
+import Image from "./ui/Image";
+import Span from "./ui/Span";
+
 import { usePlayerCoins } from "../contexts/PlayerCoins";
 import { useEnemyStatus } from "../contexts/EnemyStatus";
 
 import coins from "../assets/images/coins.png";
-import "./PlayerCoins.css";
 
-export const PlayerCoins = (props) => {
+export const PlayerCoins = () => {
   const { playerCoins, setPlayerCoins } = usePlayerCoins();
   const { enemyHitPoints } = useEnemyStatus();
 
@@ -19,14 +22,11 @@ export const PlayerCoins = (props) => {
   }, [playerCoins]);
 
   return (
-    <div
-      style={{ marginBottom: props.marginBottom }}
-      className="wrapper-player-coins"
-    >
-      <img className="image-coins" src={coins} alt="player coins" />
-      <span className="span-player-coins">
+    <Container alignCenter width={"52%"}>
+      <Image small src={coins} alt="player coins" />
+      <Span medium color={"#ffb444"} margin={"0px 0px 0px 10px"}>
         {playerCoins} {playerCoins === 1 ? "moeda" : "moedas"}
-      </span>
-    </div>
+      </Span>
+    </Container>
   );
 };

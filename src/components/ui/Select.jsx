@@ -12,6 +12,7 @@ const StyledSelect = styled.select`
 `;
 
 export default function Select({ children, ...props }) {
+  console.log(props);
   return (
     <StyledSelect
       style={{ width: props.width }}

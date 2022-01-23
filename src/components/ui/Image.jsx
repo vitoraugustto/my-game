@@ -10,10 +10,13 @@ const StyledImage = styled.img`
 `;
 
 export default function Image({
-  small = false,
-  medium = false,
-  large = false,
-  ...props
+  small,
+  medium,
+  large,
+  transition,
+  mouseOver,
+  mouseOut,
+  src,
 }) {
   return (
     <StyledImage
@@ -25,8 +28,11 @@ export default function Image({
           : large
           ? LARGE_IMAGE
           : "",
+        transition: transition,
       }}
-      src={props.src}
+      onMouseOver={mouseOver}
+      onMouseOut={mouseOut}
+      src={src}
     ></StyledImage>
   );
 }

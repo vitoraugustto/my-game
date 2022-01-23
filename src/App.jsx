@@ -17,7 +17,7 @@ function App() {
             <Router>
               <Routes>
                 <Route exact path="/" element={<Home />} />
-                <Route path="/combat-screen" element={<CombatScreen />} />
+                <Route path="/my-game" element={<CombatScreen />} />
               </Routes>
             </Router>
           </RoleStatusProvider>

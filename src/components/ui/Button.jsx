@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { useEnemyStatus } from "../contexts/EnemyStatus";
-import { useRoleStatus } from "../contexts/RoleStatus";
+import { useEnemyStatus } from "../../contexts/EnemyStatus";
+import { useRoleStatus } from "../../contexts/RoleStatus";
 
 const StyledButton = styled.button`
   background-color: #202020;
