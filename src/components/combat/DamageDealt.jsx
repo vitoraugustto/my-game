@@ -1,4 +1,5 @@
 import { useRoleStatus } from "../../contexts/RoleStatus";
+import { GREEN_1, RED_1 } from "../../theme/constants";
 import Container from "../layout/Container";
 import Span from "../ui/Span";
 
@@ -9,19 +10,23 @@ export const DamageDealt = () => {
     ""
   ) : critical ? (
     <Container alignCenter>
-      Você desferiu{" "}
-      <Span large color={"red"}>
-        {finalDamage}
-      </Span>{" "}
-      de dano crítico ao inimigo!
+      <Span>
+        Você desferiu{" "}
+        <Span large color={RED_1}>
+          {finalDamage}
+        </Span>{" "}
+        de dano crítico ao inimigo!
+      </Span>
     </Container>
   ) : (
     <Container alignCenter>
-      Você desferiu{" "}
-      <Span large color={"lightgreen"}>
-        {finalDamage}
-      </Span>{" "}
-      de dano ao inimigo!
+      <Span>
+        Você desferiu{" "}
+        <Span large color={GREEN_1}>
+          {finalDamage}
+        </Span>{" "}
+        de dano ao inimigo!
+      </Span>
     </Container>
   );
 };

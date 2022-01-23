@@ -8,6 +8,7 @@ import { usePlayerCoins } from "../contexts/PlayerCoins";
 import { useEnemyStatus } from "../contexts/EnemyStatus";
 
 import coins from "../assets/images/coins.png";
+import { ORANGE_1 } from "../theme/constants";
 
 export const PlayerCoins = () => {
   const { playerCoins, setPlayerCoins } = usePlayerCoins();
@@ -24,7 +25,7 @@ export const PlayerCoins = () => {
   return (
     <Container alignCenter width={"52%"}>
       <Image small src={coins} alt="player coins" />
-      <Span medium color={"#ffb444"} margin={"0px 0px 0px 10px"}>
+      <Span medium color={ORANGE_1} margin={"0px 0px 0px 10px"}>
         {playerCoins} {playerCoins === 1 ? "moeda" : "moedas"}
       </Span>
     </Container>

@@ -2,21 +2,32 @@ import styled from "styled-components";
 
 import { useEnemyStatus } from "../../contexts/EnemyStatus";
 import { useRoleStatus } from "../../contexts/RoleStatus";
+import {
+  MEDIUM_FONT_SIZE,
+  LETTER_SPACING_1,
+  NORMAL_FONT_WEIGHT,
+  BLACK_1,
+  BORDER_RADIUS,
+  GRAY_1,
+} from "../../theme/constants";
 
 const StyledButton = styled.button`
-  background-color: #202020;
-  color: white;
+  background-color: ${BLACK_1};
+  color: #fff;
   padding: 8px 0;
   width: 100%;
-  border: 3px solid #606060;
+  border: 3px solid ${GRAY_1};
   outline: none;
-  font-size: 20px;
+  border-radius: ${BORDER_RADIUS};
+  font-size: ${MEDIUM_FONT_SIZE};
+  letter-spacing: ${LETTER_SPACING_1};
+  font-weight: ${NORMAL_FONT_WEIGHT};
 
   transition: 0.2s;
 
   :hover {
-    background-color: #101010;
-    border: 3px solid #505050;
+    filter: brightness(120%);
+    transform: scale(1.01);
   }
 `;
 

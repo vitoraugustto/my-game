@@ -6,8 +6,6 @@ import { Profile } from "../components/Profile";
 import { Utilities } from "../components/combat/Utilities";
 import GlobalStyle from "../theme/globalStyle";
 
-import { Status } from "../components/Status";
-
 export default function CombatScreen() {
   return (
     <Background>

@@ -1,13 +1,17 @@
 import styled from "styled-components";
-
-const SMALL_TEXT = "18px";
-const MEDIUM_TEXT = "22px";
-const LARGE_TEXT = "28px";
+import {
+  DEFAULT_LETTER_SPACING,
+  NORMAL_FONT_WEIGHT,
+  SMALL_FONT_SIZE,
+  MEDIUM_FONT_SIZE,
+  LARGE_FONT_SIZE,
+} from "../../theme/constants";
 
 const StyledParagraph = styled.p`
-  font-size: ${SMALL_TEXT};
-  color: white;
-  letter-spacing: 0.5px;
+  font-size: ${MEDIUM_FONT_SIZE};
+  color: #fff;
+  letter-spacing: ${DEFAULT_LETTER_SPACING};
+  font-weight: ${NORMAL_FONT_WEIGHT};
 `;
 
 export default function Text({ small, medium, large, children }) {
@@ -15,11 +19,11 @@ export default function Text({ small, medium, large, children }) {
     <StyledParagraph
       style={{
         fontSize: small
-          ? SMALL_TEXT
+          ? SMALL_FONT_SIZE
           : medium
-          ? MEDIUM_TEXT
+          ? MEDIUM_FONT_SIZE
           : large
-          ? LARGE_TEXT
+          ? LARGE_FONT_SIZE
           : "",
       }}
     >

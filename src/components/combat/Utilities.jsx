@@ -12,17 +12,15 @@ function mouseOut(event) {
   event.target.style.transform = "scale(1)";
 }
 
-const UTILITIES_DIVIDER = {
+const UTILITIES_STYLE_DIVIDER = {
   width: "49%",
   display: "inline-block",
 };
 
-console.log(UTILITIES_DIVIDER);
-
 export const Utilities = () => {
   return (
     <Container alignCenter width={"52%"}>
-      <div style={UTILITIES_DIVIDER}>
+      <div style={UTILITIES_STYLE_DIVIDER}>
         <Image
           medium
           mouseOut={mouseOut}
@@ -34,7 +32,7 @@ export const Utilities = () => {
         <Span large>0</Span>
       </div>
 
-      <div style={UTILITIES_DIVIDER}>
+      <div style={UTILITIES_STYLE_DIVIDER}>
         <Image
           medium
           mouseOut={mouseOut}

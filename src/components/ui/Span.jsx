@@ -1,13 +1,15 @@
 import styled from "styled-components";
-
-const SMALL_SPAN = "16px";
-const MEDIUM_SPAN = "20px";
-const LARGE_SPAN = "26px";
+import {
+  DEFAULT_LETTER_SPACING,
+  SMALL_FONT_SIZE,
+  MEDIUM_FONT_SIZE,
+  LARGE_FONT_SIZE,
+} from "../../theme/constants";
 
 const StyledSpan = styled.span`
-  font-size: ${SMALL_SPAN};
+  font-size: ${SMALL_FONT_SIZE};
+  letter-spacing: ${DEFAULT_LETTER_SPACING};
   color: #fff;
-  letter-spacing: 0.5px;
 `;
 
 export default function Span({
@@ -24,11 +26,11 @@ export default function Span({
         color: color,
         margin: margin,
         fontSize: small
-          ? SMALL_SPAN
+          ? SMALL_FONT_SIZE
           : medium
-          ? MEDIUM_SPAN
+          ? MEDIUM_FONT_SIZE
           : large
-          ? LARGE_SPAN
+          ? LARGE_FONT_SIZE
           : "",
       }}
     >
