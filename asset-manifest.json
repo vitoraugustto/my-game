@@ -1,22 +1,20 @@
 {
   "files": {
-    "main.css": "/my-game/static/css/main.1a9d8188.chunk.css",
-    "main.js": "/my-game/static/js/main.01d6518e.chunk.js",
-    "main.js.map": "/my-game/static/js/main.01d6518e.chunk.js.map",
+    "main.js": "/my-game/static/js/main.184f7e72.chunk.js",
+    "main.js.map": "/my-game/static/js/main.184f7e72.chunk.js.map",
     "runtime-main.js": "/my-game/static/js/runtime-main.dfcd0afa.js",
     "runtime-main.js.map": "/my-game/static/js/runtime-main.dfcd0afa.js.map",
-    "static/js/2.bf5e71fc.chunk.js": "/my-game/static/js/2.bf5e71fc.chunk.js",
-    "static/js/2.bf5e71fc.chunk.js.map": "/my-game/static/js/2.bf5e71fc.chunk.js.map",
+    "static/js/2.88a57506.chunk.js": "/my-game/static/js/2.88a57506.chunk.js",
+    "static/js/2.88a57506.chunk.js.map": "/my-game/static/js/2.88a57506.chunk.js.map",
     "index.html": "/my-game/index.html",
-    "static/css/main.1a9d8188.chunk.css.map": "/my-game/static/css/main.1a9d8188.chunk.css.map",
-    "static/js/2.bf5e71fc.chunk.js.LICENSE.txt": "/my-game/static/js/2.bf5e71fc.chunk.js.LICENSE.txt",
+    "static/js/2.88a57506.chunk.js.LICENSE.txt": "/my-game/static/js/2.88a57506.chunk.js.LICENSE.txt",
     "static/media/archer.811552de.png": "/my-game/static/media/archer.811552de.png",
+    "static/media/skill.719bcbfd.png": "/my-game/static/media/skill.719bcbfd.png",
     "static/media/warrior.c1dd2070.png": "/my-game/static/media/warrior.c1dd2070.png"
   },
   "entrypoints": [
     "static/js/runtime-main.dfcd0afa.js",
-    "static/js/2.bf5e71fc.chunk.js",
-    "static/css/main.1a9d8188.chunk.css",
-    "static/js/main.01d6518e.chunk.js"
+    "static/js/2.88a57506.chunk.js",
+    "static/js/main.184f7e72.chunk.js"
   ]
 }
