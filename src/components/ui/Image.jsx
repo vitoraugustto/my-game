@@ -5,7 +5,6 @@ const MEDIUM_IMAGE = "64px";
 const LARGE_IMAGE = "128px";
 
 const StyledImage = styled.img`
-  height: 100%;
   display: inline-block;
 `;
 

@@ -11,7 +11,6 @@ import {
 const StyledSelect = styled.select`
   display: block;
   padding: 4px 2px;
-  color: white;
   background-color: ${BLACK_1};
   font-size: ${MEDIUM_FONT_SIZE};
   text-align: center;

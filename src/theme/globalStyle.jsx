@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Titillium Web", sans-serif;
     line-height: 100%;
     font-weight: ${LIGHT_FONT_WEIGHT};
+    color: #f1f1f1;
+
   }
 `;
 

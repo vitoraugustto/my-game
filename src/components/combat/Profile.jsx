@@ -1,24 +1,23 @@
-import { useSelectedCharacter } from "../contexts/SelectedCharacter";
+import { useSelectedCharacter } from "../../contexts/SelectedCharacter";
 
-import Container from "./layout/Container";
-import { Status } from "./Status";
-import Select from "./ui/Select";
+import Row from "../layout/Row";
+import Container from "../layout/Container";
+import Select from "../ui/Select";
 
-import allEnemies from "../characters/enemies";
-import allRoles from "../characters/roles";
 import { Avatar } from "./Avatar";
+import { Status } from "./Status";
+
+import allEnemies from "../../characters/enemies";
+import allRoles from "../../characters/roles";
 
 export const Profile = (props) => {
   const { selectedRole, selectedEnemy, handleEnemyChange, handleRoleChange } =
     useSelectedCharacter();
 
-  let isEnemy = props.isEnemy;
-
-  return isEnemy ? (
-    <Container width={"400px"}>
+  return props.isEnemy ? (
+    <Container>
       <Select
         onChange={handleEnemyChange}
-        isEnemy={isEnemy}
         width={"100%"}
         defaultValue={selectedEnemy}
       >
@@ -31,14 +30,15 @@ export const Profile = (props) => {
           </option>
         ))}
       </Select>
-      <Status isEnemy />
-      {/* <Avatar isEnemy /> */}
+      <Row padding={"10px 0"}>
+        <Status isEnemy />
+        <Avatar isEnemy />
+      </Row>
     </Container>
   ) : (
-    <Container width={"400px"}>
+    <Container>
       <Select
         onChange={handleRoleChange}
-        isEnemy={isEnemy}
         width={"100%"}
         defaultValue={selectedRole}
       >
@@ -51,8 +51,10 @@ export const Profile = (props) => {
           </option>
         ))}
       </Select>
-      <Status />
-      {/* <Avatar /> */}
+      <Row padding={"10px 0"}>
+        <Status />
+        <Avatar />
+      </Row>
     </Container>
   );
 };

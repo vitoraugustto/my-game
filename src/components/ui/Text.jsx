@@ -9,7 +9,6 @@ import {
 
 const StyledParagraph = styled.p`
   font-size: ${MEDIUM_FONT_SIZE};
-  color: #fff;
   letter-spacing: ${DEFAULT_LETTER_SPACING};
   font-weight: ${NORMAL_FONT_WEIGHT};
 `;

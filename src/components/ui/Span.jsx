@@ -9,22 +9,13 @@ import {
 const StyledSpan = styled.span`
   font-size: ${SMALL_FONT_SIZE};
   letter-spacing: ${DEFAULT_LETTER_SPACING};
-  color: #fff;
 `;
 
-export default function Span({
-  small,
-  medium,
-  large,
-  color,
-  margin,
-  children,
-}) {
+export default function Span({ small, medium, large, color, children }) {
   return (
     <StyledSpan
       style={{
         color: color,
-        margin: margin,
         fontSize: small
           ? SMALL_FONT_SIZE
           : medium

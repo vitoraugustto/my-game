@@ -13,7 +13,6 @@ import {
 
 const StyledButton = styled.button`
   background-color: ${BLACK_1};
-  color: #fff;
   padding: 8px 0;
   width: 100%;
   border: 3px solid ${GRAY_1};
